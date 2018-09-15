@@ -10,3 +10,4 @@ end
 gem 'rails', '~> 5.1.2'
 gem 'sqlite3'
 gem 'puma', '~> 3.7'
+gem 'sidekiq'
