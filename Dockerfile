@@ -10,4 +10,4 @@ RUN gem install bundler && bundle install --without development test --jobs 4 --
 
 ADD . $APP_HOME/
 
-CMD bundle exec rails s -b "0.0.0.0" -p 3000
+CMD cd $APP_HOME && bundle exec rails s -b "0.0.0.0" -p 3000
