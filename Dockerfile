@@ -10,6 +10,4 @@ RUN gem install bundler && bundle install --without development test --jobs 4 --
 
 ADD . $APP_HOME/
 
-RUN cp $APP_HOME/config/docker/database.yml $APP_HOME/config/database.yml;
-
 CMD bundle exec rails s -b "0.0.0.0" -p 3000
