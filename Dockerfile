@@ -1,6 +1,6 @@
-FROM ruby:2.4.2-alpine3.6
+FROM ruby:2.4.2
 
-RUN apk add --update --no-cache build-base curl
+RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev
 
 ENV APP_HOME /web
 WORKDIR $APP_HOME
@@ -10,4 +10,6 @@ RUN gem install bundler && bundle install --without development test --jobs 4 --
 
 ADD . $APP_HOME/
 
-CMD cd $APP_HOME && bundle exec rails s -b "0.0.0.0" -p 3000
+
+EXPOSE 3000
+CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]
