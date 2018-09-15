@@ -1,5 +1,6 @@
 class PingsController < ApplicationController
   def show
-    render json: 'pong'
+    HelloJob.perform_later
+    render json: 'Sent email to mrinmoy.das91@gmail.com'
   end
 end
