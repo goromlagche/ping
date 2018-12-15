@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ping-k8
+  labels:
+    app: rails-puma
+spec:
+  containers:
+    - name: ping-k8-tut
+      image: goromlagche/ping:latest
+      ports:
+        - containerPort: 3000
+      env:
+        - name: SECRET_KEY_BASE
+          value: "d1f8aed21b72624b6d3ea79c30dc53778cb144586c2a0e7d4f950b7d3ac53b05ddc6db65c9a5cffab91f3201d5fa6232d0d463e0317a81421942a4944d455c4d"
+        - name: REDIS_URL
+          value: ping-redis

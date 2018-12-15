@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ping-k8
+  labels:
+    app: rails-puma
+spec:
+  containers:
+    - name: ping-redis
+      image: redis
+      ports:
+        - containerPort: 6379

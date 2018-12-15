@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping-sidekiq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rails-sidekiq
+  template:
+    metadata:
+      name: ping-sidekiq
+      labels:
+        app: rails-sidekiq
+    spec:
+      containers:
+        - name: ping-sidekiq
+          image: goromlagche/ping
+          command: ["bundle", "exec", "sidekiq"]
+          ports:
+            - containerPort: 3000
+          env:
+            - name: SECRET_KEY_BASE
+              value: "d1f8aed21b72624b6d3ea79c30dc53778cb144586c2a0e7d4f950b7d3ac53b05ddc6db65c9a5cffab91f3201d5fa6232d0d463e0317a81421942a4944d455c4d"
+            - name: REDIS_URL
+              value: redis://redis-service:6379
+            - name: RAILS_ENV
+              value: production

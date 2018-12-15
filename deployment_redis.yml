@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ping-redis
+  template:
+    metadata:
+      name: ping-redis
+      labels:
+        app: ping-redis
+    spec:
+      containers:
+        - name: ping-redis
+          image: redis
+          ports:
+            - containerPort: 6379
